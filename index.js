@@ -1,66 +1,62 @@
-function colorChange() {
-    var hexValues = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e"];
-    var newColor = "#";
-    var newColor2 = "#";
+var i = 0;
+var i2 = 0;
+var i3 = 0;
+var txt = 'hold on';
+var txt2 = "another new site coming soon"
+var txt3 = "2019✌"
+var speed = 100;
+var speed2 = 40;
+
+function typing() {
+
+  if (i < txt.length) {
+    document.getElementById("text").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typing, speed2);
+  }
+
+  if (i == txt.length){
+  setTimeout(
+      function stop() {
+        document.getElementById("text").innerHTML = "";
+      }, 1500
+  )
+    }
+
+    function clear() {
+        if(i2 == 28) {
+            setTimeout(
+                function stop() {
+                  document.getElementById("text").innerHTML = "";
+                }, 1500 )
+        }
+    }
+
+  setTimeout(
+      function typing2() {
+        if (i2 < txt2.length) {
+            document.getElementById("text").innerHTML += txt2.charAt(i2);
+            setTimeout(typing2, speed);
+            i2++;
+            clear()
+          }
+      }, 4000
+  )
+
   
-    for ( var i = 0; i < 6; i++ ) {
-        var x = Math.round( Math.random() * 14 );
-        var y = hexValues[x];
-        newColor += y;
-    }
 
-    for ( var i = 0; i < 6; i++ ) {
-        var x = Math.round( Math.random() * 14 );
-        var y = hexValues[x];
-        newColor2 += y;
-    }
+  setTimeout(
+    function typing3() {
+      if (i3 < txt3.length) {
+          document.getElementById("text").innerHTML += txt3.charAt(i3);
+          i3++;
+          setTimeout(typing3, speed);
+        }
+    }, 8000
+)
 
-    let one = document.querySelector(".one");
-    let two = document.querySelector(".two")
-
-    one.style.backgroundColor = newColor;
-    one.setAttribute('data-color', newColor);
-    two.style.backgroundColor = newColor2;
-    two.setAttribute('data-color', newColor2);
-
-
-    document.querySelector(".oneP").innerHTML  = newColor;
-
-
-    document.querySelector(".twoP").innerHTML  = newColor2;
 }
 
-function hoverOver(a) {
-    if (document.querySelector("." + a + "P").innerHTML == "") {
-        document.querySelector("." + a + "P").innerHTML = "click 'submit'"
-    } else {
-    document.querySelector("." + a + "P").innerHTML = "Copy?"
-    }
-}
+typing()
 
-function hoverOff(a) {
-    x = document.querySelector("." + a + "P");
-    y = document.querySelector("." + a);
 
-    x.innerHTML = y.getAttribute('data-color');
-}
-
-function onClick(a) {
-    x = document.querySelector("." + a + "P");
-    y = document.querySelector("." + a);
-    color = y.getAttribute('data-color')
-
-    x.innerHTML = color;
-
-    var range = document.createRange();
-    var selection = window.getSelection();
-    range.selectNodeContents(x);
-
-    
-    selection.removeAllRanges();
-    selection.addRange(range);
-
-    document.execCommand("copy");
-
-    x.innerHTML = "copied!"
-}
